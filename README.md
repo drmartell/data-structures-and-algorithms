@@ -2,13 +2,16 @@
 
 ## Table Of Contents
 # Reverse an Array
-Challenge
+Reverse an array: https://github.com/drmartell/data-structures-and-algorithms/tree/master
 
 ## Challenge
-<!-- Description of the challenge -->
+Reverse an array without using any array methods.
 
 ## Approach & Efficiency
-<!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
+3 approaches were taken, all of which are O(n)
+- return a new array with a single loop
+- return a mutated array with 2 loops
+- return a new array without using the length property
 
 ## Solution
-<!-- Embedded whiteboard image -->
+![Whiteboard image](/assets/array-reverse.jpg)
