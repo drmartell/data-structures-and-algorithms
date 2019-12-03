@@ -1,3 +1,4 @@
+// return a new array
 const arrayReverse = array => {
   const reversedArray = [];
   for(let i = 0; i < array.length; ++i)
@@ -5,6 +6,7 @@ const arrayReverse = array => {
   return reversedArray;
 };
 
+// mutate original array
 const arrayReverse2 = array => {
   const arrayLength = array.length;
   for(let i = 0; i < arrayLength; ++i)
@@ -15,6 +17,7 @@ const arrayReverse2 = array => {
   return array;
 };
 
+// use object and do not use length property
 const arrayReverse3 = (array, i = 0, arrayObject = {}, reversedArray = []) => {
   // base case, we've reached the end of the array
   if(!array[i]) {
