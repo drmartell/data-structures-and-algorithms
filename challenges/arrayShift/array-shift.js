@@ -7,10 +7,9 @@ const insertShiftArray = (array, value) => {
   for(i; i < array.length; ++i) newArray[i + 1] = array[i];
   return newArray;
 };
-console.log(insertShiftArray([2, 4, 6, 8], 5));
-console.log(insertShiftArray([4, 8, 15, 23, 42], 16));
 
 const removeShiftArray = array => {
+  if(array.length <= 1) return [];
   const newArray = [];
   let i;
   const centerIndex = Math.floor(array.length / 2);
@@ -18,8 +17,6 @@ const removeShiftArray = array => {
   for(i; i < array.length; ++i) newArray[i - 1] = array[i];
   return newArray;
 };
-console.log(removeShiftArray([2, 4, 5, 6, 8]));
-console.log(removeShiftArray([4, 8, 15, 16, 23, 42]));
 
 module.exports = {
   insertShiftArray,
