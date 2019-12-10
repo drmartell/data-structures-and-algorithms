@@ -8,33 +8,37 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
+    this.size = 0;
   }
   
   insert(value) {
     const node = new Node(value);
     node.next = this.head;
     this.head = node;
+    ++this.size;
   }
 
   append(value) {
     const node = new Node(value);
     let current = this.head;
-    while(current) {
-      if(current.value !== null) current = current.next;
-    }
+    while(current.next !== null)
+      current = current.next;
     current.next = node;
+    ++this.size;
   }
 
   insertBefore(value, newValue) {
-    const newNode = new Node(newValue);
-    let current = this.head;
-    let previous = this.head;
-    let found = false;
+    let
+      current = this.head,
+      previous = this.head,
+      found = false;
     while(current) {
       if(current.value === value) {
+        const newNode = new Node(newValue);
         previous.next = newNode;
         newNode.next = current;
         found = true;
+        ++this.size;
       }
       previous = current;
       current = current.next;
@@ -43,14 +47,16 @@ class LinkedList {
   }
 
   insertAfter(value, newValue) {
-    const newNode = new Node(newValue);
-    let current = this.head;
-    let found = false;
+    let
+      current = this.head,
+      found = false;
     while(current) {
       if(current.value === value) {
+        const newNode = new Node(newValue);
         newNode.next = current.next;
         current.next = newNode;
         found = true;
+        ++this.size;
       }
       current = current.next;
     }
@@ -67,8 +73,9 @@ class LinkedList {
   }
 
   indexOf(value) {
-    let current = this.head;
-    let index = 0;
+    let
+      current = this.head,
+      index = 0;
     while(current) {
       if(current.value === value) return index;
       current = current.next;
@@ -78,13 +85,15 @@ class LinkedList {
   }
 
   delete(value) {
-    let current = this.head;
-    let previous = this.head;
-    let found = false;
+    let
+      current = this.head,
+      previous = this.head,
+      found = false;
     while(current) {
       if(current.value === value) {
         previous.next = current.next;
         found = true;
+        --this.size;
       }
       previous = current;
       current = current.next;
@@ -99,12 +108,8 @@ class LinkedList {
       nodesArray.push(node.value);
       node = node.next;
     }
-    return nodesArray.join(',');
+    return nodesArray.join('->');
   }
 }
 
 module.exports = LinkedList;
-
-// .append(value) which adds a new node with the given value to the end of the list
-// .insertBefore(value, newVal) which add a new node with the given newValue immediately before the first value node
-// .insertAfter(value, newVal) which add a new node with the given newValue immediately after the first value node

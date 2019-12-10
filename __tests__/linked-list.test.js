@@ -45,6 +45,42 @@ describe('LinkedList operation', () => {
     linkedList.insert(77);
     linkedList.insert(2);
     linkedList.insert(1);
-    expect(linkedList.toString()).toEqual('1,2,77,3');
+    expect(linkedList.toString()).toEqual('1->2->77->3');
+  });
+  it('can append a value to the end of the list', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    linkedList.append(4);
+    expect(linkedList.toString()).toEqual('1->2->3->4');
+  });
+  it('can append multiple values to the end of the list', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    linkedList.append(4);
+    linkedList.append(5);
+    expect(linkedList.toString()).toEqual('1->2->3->4->5');
+  });
+  it('can insert a value prior to specified value', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    linkedList.insertBefore(3, 4);
+    expect(linkedList.toString()).toEqual('1->2->4->3');
+  });
+  it('can insert a value after to specified value', () => {
+    linkedList.insert(4);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    linkedList.insertAfter(2, 3);
+    expect(linkedList.toString()).toEqual('1->2->3->4');
+  });
+  it('can delete a node with the specified value', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    linkedList.delete(3);
+    expect(linkedList.toString()).toEqual('1->2');
   });
 });
