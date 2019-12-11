@@ -9,12 +9,12 @@ beforeEach(() => {
 describe('LinkedList operation', () => {
   it('can successfully instantiate an empty linked list', () => {
     expect(linkedList.head).toBeNull();
-    expect(linkedList.size).toEqual(0);
+    expect(linkedList.length).toEqual(0);
   });
   it('can properly insert into the linked list', () => {
     linkedList.insert(1);
     expect(linkedList.head.value).toEqual(1);
-    expect(linkedList.size).toEqual(1);
+    expect(linkedList.length).toEqual(1);
   });
   test('the head property points to the first node in the linked list', () => {
     linkedList.insert(2);
@@ -24,7 +24,7 @@ describe('LinkedList operation', () => {
   it('can insert multiple nodes into the linked list', () => {
     linkedList.insert(2);
     linkedList.insert(1);
-    expect(linkedList.size).toEqual(2);
+    expect(linkedList.length).toEqual(2);
   });
   it('will return true when finding a value within the linked list that exists', () => {
     linkedList.insert(3);
@@ -82,5 +82,37 @@ describe('LinkedList operation', () => {
     linkedList.insert(1);
     linkedList.delete(3);
     expect(linkedList.toString()).toEqual('1->2');
+  });
+  it('throws an error when k is greater than list length', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    expect(() => linkedList.kthFromEnd(4)).toThrow();
+  });
+  it('thows an error when k is equal to the list length', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    expect(() => linkedList.kthFromEnd(3)).toThrow();
+  });
+  it('thows an error when k is a negative integer', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    expect(() => linkedList.kthFromEnd(-3)).toThrow();
+  });
+  it('returns node when list length is 1 and k = 0', () => {
+    linkedList.insert(1);
+    expect(() => linkedList.kthFromEnd(99)).toThrow();
+  });
+  it('returns node when list length is 1 and k = 0', () => {
+    linkedList.insert(1);
+    expect(linkedList.kthFromEnd(0)).toEqual(1);
+  });
+  it('returns node in middle of the list', () => {
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    expect(linkedList.kthFromEnd(1)).toEqual(2);
   });
 });

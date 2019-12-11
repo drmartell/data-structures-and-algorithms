@@ -8,14 +8,14 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
-    this.size = 0;
+    this.length = 0;
   }
   
   insert(value) {
     const node = new Node(value);
     node.next = this.head;
     this.head = node;
-    ++this.size;
+    ++this.length;
   }
 
   append(value) {
@@ -24,7 +24,7 @@ class LinkedList {
     while(current.next !== null)
       current = current.next;
     current.next = node;
-    ++this.size;
+    ++this.length;
   }
 
   insertBefore(value, newValue) {
@@ -38,7 +38,7 @@ class LinkedList {
         previous.next = newNode;
         newNode.next = current;
         found = true;
-        ++this.size;
+        ++this.length;
       }
       previous = current;
       current = current.next;
@@ -56,7 +56,7 @@ class LinkedList {
         newNode.next = current.next;
         current.next = newNode;
         found = true;
-        ++this.size;
+        ++this.length;
       }
       current = current.next;
     }
@@ -84,6 +84,18 @@ class LinkedList {
     return false;
   }
 
+  kthFromEnd(k) {
+    let current = this.head;
+    if(k > this.length - 1) throw ('list is shorter than required for k');
+    if(k < 0) throw ('k must be greater than or equal to 0, 0 corresponds to the final list node');
+    
+    const targetIndex = this.length - k - 1;
+    for(let i = 0; i < targetIndex; ++i) {
+      current = current.next;
+    }
+    return current.value;
+  }
+
   delete(value) {
     let
       current = this.head,
@@ -93,7 +105,7 @@ class LinkedList {
       if(current.value === value) {
         previous.next = current.next;
         found = true;
-        --this.size;
+        --this.length;
       }
       previous = current;
       current = current.next;
