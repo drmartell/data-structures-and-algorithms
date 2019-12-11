@@ -96,6 +96,20 @@ class LinkedList {
     return current.value;
   }
 
+  getMiddleValue() {
+    let current = this.head;
+    const length = this.length;
+
+    if(length === 0) throw ('no values in list');
+    if(length === 1) return current.value;
+    
+    const targetIndex = Math.floor(this.length / 2);
+    for(let i = 0; i < targetIndex; ++i) {
+      current = current.next;
+    }
+    return current.value;
+  }
+
   delete(value) {
     let
       current = this.head,

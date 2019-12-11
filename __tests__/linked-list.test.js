@@ -101,18 +101,30 @@ describe('LinkedList operation', () => {
     linkedList.insert(1);
     expect(() => linkedList.kthFromEnd(-3)).toThrow();
   });
-  it('returns node when list length is 1 and k = 0', () => {
+  it('returns node value when list length is 1 and k = 0', () => {
     linkedList.insert(1);
     expect(() => linkedList.kthFromEnd(99)).toThrow();
   });
-  it('returns node when list length is 1 and k = 0', () => {
+  it('returns node value when list length is 1 and k = 0', () => {
     linkedList.insert(1);
     expect(linkedList.kthFromEnd(0)).toEqual(1);
   });
-  it('returns node in middle of the list', () => {
+  it('returns node value somewhere in midst of the list', () => {
     linkedList.insert(3);
     linkedList.insert(2);
     linkedList.insert(1);
     expect(linkedList.kthFromEnd(1)).toEqual(2);
+  });
+  it('returns the middle list value', () => {
+    linkedList.insert(5);
+    linkedList.insert(4);
+    linkedList.insert(3);
+    linkedList.insert(2);
+    linkedList.insert(1);
+    expect(linkedList.getMiddleValue()).toEqual(3);
+  });
+  it('returns the first value when there is only one node', () => {
+    linkedList.insert(99);
+    expect(linkedList.getMiddleValue()).toEqual(99);
   });
 });
