@@ -120,7 +120,7 @@ class LinkedList {
       nodesArray.push(node.value);
       node = node.next;
     }
-    return nodesArray.join('->');
+    return nodesArray.join(' -> ');
   }
 }
 
