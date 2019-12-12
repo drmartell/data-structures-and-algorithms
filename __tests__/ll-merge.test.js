@@ -24,7 +24,9 @@ describe('mergedList operation', () => {
   it('can merge 2 linked lists as expected', () => {
     ll1.insert(2); ll1.insert(3); ll1.insert(1);
     ll2.insert(9); ll2.insert(5);
-    expect(mergeLists(ll1, ll2).toString()).toEqual('1 -> 5 -> 3 -> 9 -> 2');
+    const merged = mergeLists(ll1, ll2);
+    expect(merged.toString()).toEqual('1 -> 5 -> 3 -> 9 -> 2');
+    expect(merged.length).toEqual(5);
   });
 });
 
@@ -42,6 +44,8 @@ describe('mergedSortedLists operation', () => {
   it('can merge 2 linked lists as expected', () => {
     ll1.insert(3); ll1.insert(2); ll1.insert(1);
     ll2.insert(9); ll2.insert(8); ll2.insert(7);
-    expect(mergeSortedLists(ll1, ll2).toString()).toEqual('1 -> 2 -> 3 -> 7 -> 8 -> 9');
+    const mergedSorted = mergeSortedLists(ll1, ll2);
+    expect(mergedSorted.toString()).toEqual('1 -> 2 -> 3 -> 7 -> 8 -> 9');
+    expect(mergedSorted.length).toEqual(6);
   });
 });
