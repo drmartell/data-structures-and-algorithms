@@ -32,11 +32,19 @@ const mergeSortedLists = (ll1, ll2) => {
     current1 = ll1.head,
     current2 = ll2.head,
     currentMerged;
+    
   const determineNext = (node1, node2) => {
     let nextNode;
-    if(!node1) nextNode = node2;
-    else if(!node2) nextNode = node1;
-    else if([node1.value, node2.value].sort()[0] === node1.value) {
+    if(!node1) {
+      nextNode = node2;
+      current2 = node2.next;
+    }
+    else if(!node2) {
+      nextNode = node1;
+      current1 = node1.next;
+    }
+    
+    if(!nextNode && [node1.value, node2.value].sort()[0] === node1.value) {
       nextNode = node1;
       current1 = node1.next;
     }
@@ -54,7 +62,7 @@ const mergeSortedLists = (ll1, ll2) => {
       currentMerged = nextNode;
     }
   };
-  
+
   while(current1 || current2)
     determineNext(current1, current2);
 
