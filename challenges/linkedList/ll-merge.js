@@ -1,7 +1,9 @@
 const LinkedList = require('../linkedList/linked-list');
 
 const mergeLists = (ll1, ll2) => {
-  const merged = new LinkedList();
+  const
+    merged = new LinkedList(),
+    currentObj = {};
   merged.head = ll1.head;
   merged.length = 1;
   let
@@ -9,36 +11,21 @@ const mergeLists = (ll1, ll2) => {
     current2 = ll2.head,
     currentMerged = merged.head;
   const
-    // merge = current => {
-    //   currentMerged.next = current;
-    //   currentMerged = current;
-    //   current = current.next;
-    //   ++merged.length;
-    // },
-    merge1 = () => {
-      currentMerged.next = current1;
-      currentMerged = current1;
-      current1 = current1.next;
-      ++merged.length;
-    },
-    merge2 = () => {
-      currentMerged.next = current2;
-      currentMerged = current2;
-      current2 = current2.next;
+    merge = currentString => {
+      const current = currentObj[currentString];
+      currentMerged.next = current;
+      currentMerged = current;
+      currentObj[currentString] = current.next;
       ++merged.length;
     };
-  // while(current2) {
-  //   console.log(current1.value);
-  //   console.log(current2.value);
-  //   merge(current2);
-  //   if(current1) merge(current1);
-  // }
-  // while(current1) merge(current1);
-  while(current2) {
-    merge2();
-    if(current1) merge1();
+  currentObj['current1'] = current1;
+  currentObj['current2'] = current2;
+  while(currentObj['current2']) {
+    merge('current2');
+    if(currentObj['current1']) merge('current1');
   }
-  while(current1) merge1();
+  while(currentObj['current1']) merge('current1');
+
   return merged;
 };
 

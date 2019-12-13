@@ -30,7 +30,7 @@ describe('mergedList operation', () => {
   });
 });
 
-describe('mergedSortedLists operation', () => {
+describe ('mergedSortedLists operation', () => {
   it('can merge 2 linked lists as expected', () => {
     ll1.insert(3); ll1.insert(2); ll1.insert(1);
     ll2.insert(3); ll2.insert(2); ll2.insert(1);
