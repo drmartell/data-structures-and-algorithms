@@ -4,8 +4,8 @@ const mergeLists = (ll1, ll2) => {
   const merged = new LinkedList();
   const currentObj = { current1: ll1.head.next, current2: ll2.head };
   merged.head = ll1.head;
-  merged.length = 1;
   let currentMerged = merged.head;
+  merged.length = 1;
   const merge = currentString => {
     currentMerged.next = currentObj[currentString];
     currentMerged = currentObj[currentString];
