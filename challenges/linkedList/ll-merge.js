@@ -6,20 +6,17 @@ const mergeLists = (ll1, ll2) => {
   // at this point we have 2 valid lists, so...
   let
     current = ll1.head,
-    currentNext = ll1.head.next,
-    nodeToAdd;
-
+    currentNext = ll1.head.next;
   ll1.length = 1;
 
   while(ll2.head && currentNext) {
-    nodeToAdd = ll2.head;
+    // chop off head of ll2
+    current.next = ll2.head;
     ll2.head = ll2.head.next;
     --ll2.length;
-
-    current.next = nodeToAdd;
     ++ll1.length;
     
-    nodeToAdd.next = currentNext;
+    current.next.next = currentNext;
     ++ll1.length;
     
     current = currentNext;
