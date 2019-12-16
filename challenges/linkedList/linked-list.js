@@ -20,6 +20,10 @@ class LinkedList {
 
   append(value) {
     const node = new Node(value);
+    if(!this.head) {
+      this.head = node;
+      return;
+    }
     let current = this.head;
     while(current.next !== null)
       current = current.next;
