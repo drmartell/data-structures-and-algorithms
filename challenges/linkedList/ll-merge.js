@@ -1,5 +1,60 @@
 const LinkedList = require('../linkedList/linked-list');
 
+// const mergeLists = (list1, list2) => {
+//   const mergedList = new LinkedList();
+
+//   while(list1.head) {
+//     mergedList.append(list1.head.value);
+//     list1.head = list1.head.next;
+//     mergedList.append(list2.head.value);
+//     list2.head = list2.head.next;
+//   }
+
+//   while(list2.head) {
+//     list1.insertAfter(current.value, list2.head.value);
+//     if(list2.head.next) list2.head = list2.head.next;
+//     else break;
+//     current = current.next.next;
+//     if(!current.next) {
+//       list1.append(list2.head.value);
+//       break;
+//     }
+//   }
+
+//   return list1;
+// };
+
+// const mergeLists = (list1, list2) => {
+//   let current = list1.head;
+
+//   while(list2.head) {
+//     list1.insertAfter(current.value, list2.head.value);
+//     if(list2.head.next) list2.head = list2.head.next;
+//     else break;
+//     current = current.next.next;
+//     if(!current.next) {
+//       list1.append(list2.head.value);
+//       break;
+//     }
+//   }
+
+//   return list1;
+// };
+
+// const mergeLists = (list1, list2) => {
+//   let 
+//     mergeNode = list1.head,
+//     savedNode;
+//   while(mergeNode.next){
+//     savedNode = mergeNode.next;
+//     mergeNode.next = list2.head; 
+//     list2.head = savedNode;
+//     mergeNode = mergeNode.next;    
+//   }
+//   mergeNode.next = list2.head;
+//   return list1;
+// };
+
 const mergeLists = (ll1, ll2) => {
   const merged = new LinkedList();
   const currentObj = { current1: ll1.head.next, current2: ll2.head };
