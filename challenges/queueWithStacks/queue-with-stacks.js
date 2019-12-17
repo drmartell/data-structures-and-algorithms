@@ -7,11 +7,11 @@ class Node {
 
 class Stack {
   constructor(value = null) {
-    this.top = new Node(value);
+    this.top = value ? new Node(value) : null;
   }
-  
-  push(value) {
-    if(!this.top) {
+
+  push(value) { // add a node to the top of the stack
+    if(!this.peek()) {
       this.top = new Node(value);
     } else {
       const top = this.top;
@@ -20,48 +20,79 @@ class Stack {
     }
   }
 
-  pop() {
-    if(!this.top) return null;
-    const top = this.top;
-    this.top = top.next;
-    return top;
+  pop() { // remove the topmost node and return its value
+    if(!this.peek()) return null;
+    const topValue = this.top.value;
+
+    this.top = this.top.next ? this.top.next : null;
+    return topValue;
   }
 
-  peek() {
-    return !this.top;
+  peek() { // display the value if there is one
+    return this.top ? this.top.value : null;
   }
 }
 
 class PseudoQueue {
-  constructor(value) {
-    this.stack1 = new Stack(value);
-    this.end = this.stack1.top;
-    this.stack2 = new Stack();
+  // implementation per instructions: queue has front and back and next's point forward
+  // 2 stacks can be used to manage a queue with on stack's top being the queue's front
+  // and the other being the queue's back
+  constructor() {
+    this.fwdStack = new Stack();
+    this.revStack = new Stack();
   }
 
-  enqueue(value) { //FIFO, append value to back of queue
-    this.stack1.push(value);
-    this.end = this.stack1.top;
-    return this.end;
+  noStacks() {
+    return !(this.fwdStack && this.revStack);
   }
 
-  dequeue() { //FIFO, return value from front of queue
-    // invert the first stack into the second
-    let nodeValue;
-    while(this.stack1.top) {
-      const node = this.stack1.top;
-      nodeValue = node.value;
-      this.stack1.pop();
-      if(!this.stack2.top) this.stack2.top = node;
-      else this.stack2.push(node);
+  frontToTop() {
+    if(this.noStacks()) return;
+    let poppedNodeValue;
+    while(this.fwdStack && this.fwdStack.top) {
+      poppedNodeValue = this.fwdStack.pop();
+      this.revStack.push(poppedNodeValue);
     }
+  }
 
-    return nodeValue;
+  backToTop() {
+    if(this.noStacks()) return;
+    let poppedNodeValue;
+    while(this.revStack && this.revStack.top) {
+      poppedNodeValue = this.revStack.pop();
+      this.fwdStack.push(poppedNodeValue);
+    }
+  }
+  
+  enqueue(value) {
+    // FIFO, append value to back of queue
+    if(this.noStacks()) {
+      // initialize
+      this.fwdStack.push(value);
+      return;
+    }
+    // or push onto existing stack
+    this.fwdStack.push(value);
+    return this.fwdStack;
+  }
+
+  dequeue() {
+    // FIFO, return value from front of queue
+    // invert the first stack into the second
+    this.frontToTop();
+
+    // remove the front node and get it's value
+    const frontNodeValue = this.revStack.pop();
+    
+    // revert the list to the original ordering
+    this.backToTop();
+    return frontNodeValue;
   }
 
   toString() {
+    if(this.noStacks()) return null;
     const nodesArray = [];
-    let node = this.end;
+    let node = this.fwdStack.top;
     while(node) {
       nodesArray.push(node.value);
       node = node.next;
