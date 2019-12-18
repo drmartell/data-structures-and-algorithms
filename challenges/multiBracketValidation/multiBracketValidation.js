@@ -43,7 +43,7 @@ const multiBracketValidation = string => {
 
   // get array of only characters of interest
   const stringArr = string.split('').filter(char => '()[]{}'.includes(char));
-  if(stringArr.length === 0) return false;
+  if(stringArr.length === 0) return true;
 
   let result = true;
 
@@ -59,7 +59,7 @@ const multiBracketValidation = string => {
       }
     }
   });
-  // bracketStack should now be enpty if they were all matched
+  // bracketStack should not have contents now if all brackets were matched
   if(bracketStack.peek()) result = false;
   return result;
 };

@@ -38,7 +38,7 @@ describe('multiBracketValidation operation', () => {
   it('returns false for: )(', () => {
     expect(multiBracketValidation(')(')).toBeFalsy();
   });
-  it('returns false for: \'\'', () => {
-    expect(multiBracketValidation('')).toBeFalsy();
+  it('returns true for: \'\'', () => {
+    expect(multiBracketValidation('')).toBeTruthy();
   });
 });
