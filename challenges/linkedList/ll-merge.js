@@ -1,34 +1,50 @@
 const LinkedList = require('../linkedList/linked-list');
 
-const mergeLists = (ll1, ll2) => {
-  if(!ll1.head && !ll2.head) throw ('mergeLists requires at least one list with node(s)');
-  if(!ll1.head) return ll2;
-  // at this point we have 2 valid lists, so...
+const mergeLists = (list1, list2) => {
   let
-    current = ll1.head,
-    currentNext = ll1.head.next;
-  ll1.length = 1;
+    mergeNode = list1.head,
+    savedNode;
 
-  while(ll2.head && currentNext) {
-    // chop off head of ll2
-    current.next = ll2.head;
-    ll2.head = ll2.head.next;
-    --ll2.length;
-    ++ll1.length;
-    
-    current.next.next = currentNext;
-    ++ll1.length;
-    
-    current = currentNext;
-    if(current.next) currentNext = current.next;
-    else { current.next = ll2.head;
-      break;
-    }
+  while(mergeNode.next){
+    savedNode = mergeNode.next;
+    mergeNode.next = list2.head; 
+    list2.head = savedNode;
+    mergeNode = mergeNode.next;    
   }
-  
-  ll2.length = 0;
-  return ll1;
+
+  mergeNode.next = list2.head;
+  return list1;
 };
+
+// const mergeLists = (ll1, ll2) => {
+//   if(!ll1.head && !ll2.head) throw ('mergeLists requires at least one list with node(s)');
+//   if(!ll1.head) return ll2;
+//   // at this point we have 2 valid lists, so...
+//   let
+//     current = ll1.head,
+//     currentNext = ll1.head.next;
+//   ll1.length = 1;
+
+//   while(ll2.head && currentNext) {
+//     // chop off head of ll2
+//     current.next = ll2.head;
+//     ll2.head = ll2.head.next;
+//     --ll2.length;
+//     ++ll1.length;
+    
+//     current.next.next = currentNext;
+//     ++ll1.length;
+    
+//     current = currentNext;
+//     if(current.next) currentNext = current.next;
+//     else { current.next = ll2.head;
+//       break;
+//     }
+//   }
+  
+//   ll2.length = 0;
+//   return ll1;
+// };
 
 // const mergeLists = (ll1, ll2) => {
 //   const merged = new LinkedList();
