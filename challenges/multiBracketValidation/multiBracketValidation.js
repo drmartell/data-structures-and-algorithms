@@ -41,27 +41,13 @@ const multiBracketValidation = string => {
     '}': '{'
   };
 
-  // get array of only characters of interest
-  const stringArr = string.split('').filter(char => '()[]{}'.includes(char));
-  if(stringArr.length === 0) return true;
+  for(const char of string)
+    if('()[]{}'.includes(char))
+      bracketPairs[char] === bracketStack.peek() ?
+        bracketStack.pop() :
+        bracketStack.push(char);
 
-  let result = true;
-
-  stringArr.forEach(char => {
-    if('([{'.includes(char)) bracketStack.push(char);
-    else if(')]}'.includes(char)) {
-      if(!bracketStack.peek() 
-      || bracketStack.peek() !== bracketPairs[char]) {
-        result = false;
-        stringArr.length = 0; // break loop
-      } else {
-        bracketStack.pop();
-      }
-    }
-  });
-  // bracketStack should not have contents now if all brackets were matched
-  if(bracketStack.peek()) result = false;
-  return result;
+  return !bracketStack.peek();
 };
 
 module.exports = multiBracketValidation;
