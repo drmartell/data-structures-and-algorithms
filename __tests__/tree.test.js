@@ -59,4 +59,19 @@ describe('BinaryTree operation', () => {
     binaryTree = new BinaryTree(binarySearchTree);
     expect(binaryTree.postOrder()).toEqual([5, 4, 3, 2, 1]);
   });
+
+  it('can traverse a tree using breadth first', () => {
+    binarySearchTree.add(3);
+    binarySearchTree.add(1);
+    binarySearchTree.add(2);
+    binarySearchTree.add(4);
+    binarySearchTree.add(5);
+    binarySearchTree.add(3);
+    binarySearchTree.add(4);
+    binarySearchTree.add(5);
+    binarySearchTree.add(1);
+    binarySearchTree.add(2);
+    binaryTree = new BinaryTree(binarySearchTree);
+    expect(binaryTree.breadthFirst()).toEqual([3, 1, 4, 2, 3, 5, 1, 2, 4, 5]);
+  });
 });
