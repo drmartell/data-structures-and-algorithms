@@ -32,46 +32,31 @@ describe('BinarySearchTree operation', () => {
 describe('BinaryTree operation', () => {
   it('can return a collection from preorder traversal', () => {
     binarySearchTree.add(1);
-    binaryTree = new BinaryTree(binarySearchTree);
-    binarySearchTree.add(20);
+    binarySearchTree.add(2);
     binarySearchTree.add(3);
     binarySearchTree.add(4);
-    expect(binaryTree.preOrder()).toEqual([1, 20, 3, 4]);
     binarySearchTree.add(5);
-    binarySearchTree.add(6);
-    binarySearchTree.add(7);
-    binarySearchTree.add(8);
-    binarySearchTree.add(9);
-    expect(binaryTree.preOrder()).toEqual([1, 20, 3, 4, 5, 6, 7, 8, 9]);
+    binaryTree = new BinaryTree(binarySearchTree);
+    expect(binaryTree.preOrder()).toEqual([1, 2, 3, 4, 5]);
   });
 
   it('can return a collection from inorder traversal', () => {
     binarySearchTree.add(1);
-    binaryTree = new BinaryTree(binarySearchTree);
     binarySearchTree.add(2);
+    binarySearchTree.add(3);
     binarySearchTree.add(4);
     binarySearchTree.add(5);
-    expect(binaryTree.inOrder()).toEqual([1, 2, 4, 5]);
-    binarySearchTree.add(3);
-    binarySearchTree.add(6);
-    binarySearchTree.add(8);
-    binarySearchTree.add(7);
-    binarySearchTree.add(9);
-    expect(binaryTree.inOrder()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    binaryTree = new BinaryTree(binarySearchTree);
+    expect(binaryTree.inOrder()).toEqual([1, 2, 3, 4, 5]);
   });
 
   it('can return a collection from postorder traversal', () => {
-    binarySearchTree.add(3);
     binarySearchTree.add(1);
     binarySearchTree.add(2);
-    binarySearchTree.add(4);
-    binarySearchTree.add(5);
-    expect(binaryTree.postOrder()).toEqual([2, 1, 5, 4, 3]);
     binarySearchTree.add(3);
     binarySearchTree.add(4);
     binarySearchTree.add(5);
-    binarySearchTree.add(1);
-    binarySearchTree.add(2);
-    expect(binaryTree.postOrder()).toEqual([1, 2, 2, 1, 3, 4, 5, 5, 4, 3]);
+    binaryTree = new BinaryTree(binarySearchTree);
+    expect(binaryTree.postOrder()).toEqual([5, 4, 3, 2, 1]);
   });
 });
