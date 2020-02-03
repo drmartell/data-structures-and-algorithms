@@ -12,6 +12,7 @@ class BinaryTree {
   }
 
   preOrder(){
+    if(!this.root) return;
     const array = [];
     (function castPreArray(current){
       if(current){
@@ -24,6 +25,7 @@ class BinaryTree {
   }
 
   inOrder(){
+    if(!this.root) return;
     const array = [];
     (function castInArray(current){
       if(current){
@@ -36,6 +38,7 @@ class BinaryTree {
   }
 
   postOrder(){
+    if(!this.root) return;
     const array = [];
     (function castPostArray(current){
       if(current){
@@ -59,6 +62,20 @@ class BinaryTree {
       results.push(queue.shift().value);
     }
     return results;
+  }
+
+  findMax() {
+    if(!this.root) return;
+    let max = this.root.value;
+
+    (function castPreArray(current){
+      if(current){
+        max = Math.max(current.value, max);
+        castPreArray(current.left);
+        castPreArray(current.right);
+      }
+    }).apply(null, [this.root]);
+    return max;
   }
 }
 
