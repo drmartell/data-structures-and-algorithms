@@ -74,4 +74,19 @@ describe('BinaryTree operation', () => {
     binaryTree = new BinaryTree(binarySearchTree);
     expect(binaryTree.breadthFirst()).toEqual([3, 1, 4, 2, 3, 5, 1, 2, 4, 5]);
   });
+
+  it('can find the maximum value in a tree', () => {
+    binarySearchTree.add(3);
+    binarySearchTree.add(1);
+    binarySearchTree.add(2);
+    binarySearchTree.add(4);
+    binarySearchTree.add(5);
+    binarySearchTree.add(333);
+    binarySearchTree.add(4);
+    binarySearchTree.add(5);
+    binarySearchTree.add(1);
+    binarySearchTree.add(444);
+    binaryTree = new BinaryTree(binarySearchTree);
+    expect(binaryTree.findMax()).toEqual(444);
+  });
 });
